@@ -1,0 +1,184 @@
+* { box-sizing: 
+    border-box; 
+    margin: 0; 
+    padding: 0; 
+    font-family: 'Segoe UI', 
+    Arial, sans-serif; 
+}
+
+
+body { 
+    background: #f4f7f5; 
+    color: #1a1a1a; 
+}
+
+.navbar { 
+    background: #0a7a43; 
+    padding: 16px 0; 
+    position: sticky; 
+    top: 0; 
+    z-index: 10; 
+}
+
+
+.navbar-inner { 
+    max-width: 1100px; 
+    margin: auto; 
+    padding: 0 20px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+
+.brand { 
+    color: white; 
+    font-weight: 800; 
+    letter-spacing: 1px; 
+    font-size: 18px; 
+}
+
+
+.navbar nav { 
+    display: flex; 
+    gap: 10px; 
+}
+
+
+.navbar nav a { 
+    color: #d6efe0; 
+    text-decoration: none; 
+    font-weight: 600; 
+    padding: 8px 14px; 
+    border-radius: 8px; 
+}
+
+
+.navbar nav a:hover { 
+    background: white; 
+    color: #0a7a43; 
+}
+
+
+.container { 
+    max-width: 1100px; 
+    margin: auto; 
+    padding: 32px 20px; 
+}
+
+
+.title { 
+    font-size: 30px; 
+    text-align: center; 
+    margin-bottom: 20px; 
+}
+
+
+.cards { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 18px; 
+}
+
+
+.card { 
+    background: white; 
+    border-radius: 16px; 
+    padding: 26px; 
+    text-align: center; 
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06); 
+}
+
+
+.card p { 
+    color: #777; 
+    margin-bottom: 8px; 
+}
+
+
+.card h2 { 
+    font-size: 32px; 
+    color: #0a7a43; 
+}
+
+
+.graficas-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 18px; 
+}
+
+
+.grafica-box { 
+    background: white; 
+    border-radius: 16px; 
+    padding: 20px; 
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06); 
+    text-align: center; 
+}
+
+
+.grafica-placeholder { 
+    margin-top: 14px; 
+    height: 180px; 
+    background: #eef6f1; 
+    border: 2px dashed #b7dcc8; 
+    border-radius: 12px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: #5b8a6e; 
+}
+
+
+.historial-head { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 16px; 
+    margin-bottom: 22px; 
+}
+
+
+.historial-head .title { 
+    margin: 0; 
+}
+
+
+.btn-actualizar { 
+    background: #0a7a43; 
+    color: white; 
+    border: none; 
+    padding: 9px 18px; 
+    border-radius: 8px; 
+    font-weight: 700; 
+    cursor: pointer; 
+}
+
+
+.table-wrap { 
+    background: white; 
+    border-radius: 16px; 
+    overflow: hidden; 
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06); 
+}
+
+
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+}
+
+
+th { 
+    background: #eef6f1; 
+    text-align: left; 
+    padding: 14px; 
+}
+
+
+td { 
+    padding: 13px 14px; 
+    border-top: 1px solid #eee; 
+}
+

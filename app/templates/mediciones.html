@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="title">Mediciones</h1>
+<div class="cards">
+   
+   <div class="card">
+      <p>
+         Temperatura
+      </p>
+      <h2>{{ dato.temperatura }} C</h2>
+
+   </div>
+   <div class="card">
+      <p>Humedad</p>
+      <h2>{{ dato.humedad }} %</h2>
+   </div>
+
+   <div class="card">
+      <p>pH</p>
+      <h2>{{ dato.ph }}</h2>
+   </div>
+</div>
+{% endblock %}
