@@ -1,23 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
-<h1 class="title">Mediciones</h1>
+<h1 class="title"> Mediciones </h1>
 <div class="cards">
    
    <div class="card">
-      <p>
-         Temperatura
-      </p>
-      <h2>{{ dato.temperatura }} C</h2>
+      <p> Temperatura </p>
 
-   </div>
-   <div class="card">
-      <p>Humedad</p>
-      <h2>{{ dato.humedad }} %</h2>
+      <h2 id="temp"> {{ dato.temperatura }} C</h2>
+
    </div>
 
    <div class="card">
-      <p>pH</p>
-      <h2>{{ dato.ph }}</h2>
+      <p> Humedad </p>
+
+      <h2 id="hum"> {{ dato.humedad }} %</h2>
+
+   </div>
+
+   <div class="card">
+      <p> pH </p>
+
+      <h2 id="ph"> {{ dato.ph }}</h2>
+
    </div>
 </div>
+
+<script>
+ //esta parte lo actualizara cada 20 segundos
+ setInterval(() => {
+   fetch('/valoresSensores')
+   .then(res => res.json())
+   .then(data => {
+      document.getElementById('temp').innerText = data.temperatura + 'C';
+      document.getElementById('hum').innerText = data.humedad + '%';
+      document.getElementById('ph').innerText = data.ph;
+   });
+
+ }, 20000);
+
+</script>
+
 {% endblock %}
