@@ -1,40 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
-<h2> Gráficas </h2>
+<h2>Gráficas</h2>
+<div style="width:90%; max-width:800px; margin:auto;">
 
-<div style="max-width:800px; margin-top: auto;">
-  <canvas id="grafica"></canvas>
+  <canvas id="miGrafica" width="400" height="200"></canvas>
+
 </div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+    
+fetch('/datosGraficas')
+.then(res => res.json())
+.then(datos => {
 
- async function cargar() {
-    const res = await fetch('/datosGraficas');
-    const datos = await res.json();
+  console.log(datos);
+  const labels = datos.map(d => d.hora);
+  const temp = datos.map(d => d.temperatura);
+  const hum = datos.map(d => d.humedad);
+  const ph = datos.map(d => d.ph);
 
-    const labels = datos.map(d => d.hora);
-    const temp = datos.map(d => d.temperatura);
-    const hum = datos.map( d => d.humedad);
-    const ph = datos.ma( d => d.ph);
-
-
-    new Chart(document.getElementById('grafica'),{
-        type: 'line',
-        data:{
-            labels: labels,
-            datasets:[
-                 { label: 'Temperatura', data: temp, borderColor: 'red', fill: false },
-                 { label: 'Humedad', data: hum, borderColor: 'blue', fill: false },
-                 { label: 'pH', data: ph, borderColor: 'green', fill: false }
-            ]
-        }
-    });
- }
-
-cargar();
-setInterval(cargar, 20000);
+  new Chart(document.getElementById('miGrafica'), {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        { label: 'Temperatura', data: temp, borderColor: 'red', tension: 0.1 },
+        { label: 'Humedad', data: hum, borderColor: 'blue', tension: 0.1 },
+        { label: 'pH', data: ph, borderColor: 'green', tension: 0.1 }
+      ]
+    }
+  });
+});
 </script>
 {% endblock %}
