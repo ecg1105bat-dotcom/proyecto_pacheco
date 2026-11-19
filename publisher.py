@@ -9,5 +9,5 @@ while True:
     ph = round(random.uniform(6, 8), 1)
 
     MedicionService.guardar_lectura(temp, hum, ph)
-    print(f"Guardado: {temp}C, {hum}%, pH{ph}")
+    print(f"Guardado: {temp}°C, {hum}%, pH{ph}")
     time.sleep(20)

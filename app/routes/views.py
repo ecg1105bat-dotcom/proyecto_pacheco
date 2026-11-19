@@ -33,7 +33,24 @@ def valores_sensores():
         "temperatura": float(dato.get("temperatura", 0)),
         "humedad": float(dato.get("humedad", 0)),
         "ph": float(dato.get("ph", 0))
+
     })
+
+
+@main_bp.route("/datosGrafica")
+def datos_graficas():
+    registros = MedicionService.obtener_historial()
+
+    #solamente los ultimos 20
+    registros = registros[:20][::-1]
+    return jsonify([
+        {
+            "temperatura": float(r["temperatura"]),
+            "humedad": float(r["humedad"]),
+            "ph": float(r["ph"]),
+            "hora": str(r["hora"])
+        } for r in registros
+    ])
     
 
 

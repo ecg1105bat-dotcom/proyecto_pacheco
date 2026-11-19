@@ -6,7 +6,7 @@
   <div style="border:1px solid #ddd; padding:20px; border-radius:10px; width:150px; text-align:center;">
 
     <p> Temperatura </p>
-    <h2 id="temp">{{ dato.temperatura }} C</h2>
+    <h2 id="temp">{{ dato.temperatura }} °C</h2>
 
 
   </div>
@@ -37,10 +37,10 @@
    //esta parte los actualiza cada 20 segundos 
   setInterval(() => {
     fetch('/valoresSensores')
-    
+
       .then(r => r.json())
       .then(data => {
-        document.getElementById('temp').innerText = data.temperatura + ' C';
+        document.getElementById('temp').innerText = data.temperatura + ' °C';
         document.getElementById('hum').innerText = data.humedad + ' %';
         document.getElementById('ph').innerText = data.ph;
       });
