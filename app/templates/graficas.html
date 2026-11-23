@@ -1,37 +1,94 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Gráficas</h2>
-<div style="width:90%; max-width:800px; margin:auto;">
+<h2 style="text-aling:center;"> Gráficas </h2>
 
-  <canvas id="miGrafica" width="400" height="200"></canvas>
+<div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; padding: 20px;">
+
+  <!---cuadro 1 para la grafica de temperatura-->
+  <div style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 15px; 
+    width: 300px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+
+    <h3 style="text-align: center; margin: 0 0 10px 0;"> Temperatura </h3>
+    <canvas id="grafTemp"></canvas>
+
+  </div>
+
+  <!---cuadro 2 para la grafica de humedad-->
+  <div style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 15px;
+   width: 300px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+
+    <h3 style="text-align: center; margin: 0 0 10px 0;"> Humedad </h3>
+    <canvas id="grafHum"></canvas>
+
+  </div>
+
+  <!---cuadro 3 para la grafica de pH-->
+  <div style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 15px;
+   width: 300px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+
+    <h3 style="text-align: center; margin: 0 0 10px 0;"> pH </h3>
+    <canvas id="grafPh"></canvas>
+
+  </div>
+
 
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <script>
-    
-fetch('/datosGraficas')
-.then(res => res.json())
-.then(datos => {
 
-  console.log(datos);
-  const labels = datos.map(d => d.hora);
-  const temp = datos.map(d => d.temperatura);
-  const hum = datos.map(d => d.humedad);
-  const ph = datos.map(d => d.ph);
+  let chartTemp, chartHum, chartPh;
 
-  new Chart(document.getElementById('miGrafica'), {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [
-        { label: 'Temperatura', data: temp, borderColor: 'red', tension: 0.1 },
-        { label: 'Humedad', data: hum, borderColor: 'blue', tension: 0.1 },
-        { label: 'pH', data: ph, borderColor: 'green', tension: 0.1 }
-      ]
-    }
-  });
-});
+  async function cargar() {
+    const res = await fetch('/datosGraficas');
+    const datos = await res.json();
+
+
+    const labels = datos.map(d => d.hora);
+    const temp = datos.map(d => d.tempeartura);
+    const hum = datos.map(d => d.humedad);
+    const ph = datos.map(d => d.ph);
+
+
+    if (chartTemp) chartTemp.destroy();
+    if (chartHum) chartHum.destroy();
+    if (chartPh) chartPh.destroy();
+
+    chartTemp = new Chart(document.getElementById('grafTemp'), {
+      type: 'line',
+      data: {
+        labels: labels, datasets: [{
+          label: 'Temperatura', data: temp, borderColor: '#2196F3',
+          backgroundColor: '#2196F3', tension: 0.1
+        }]
+      }
+    });
+
+    chartHum = new Chart(document.getElementById('grafHum'), {
+      type: 'line',
+      data: {
+        labels: labels, datasets: [{
+          label: 'Humedad', data: hum, borderColor: '#E53935',
+          backgroundColor: '#E53935', tension: 0.1
+        }]
+      }
+    });
+
+    chartPh = new Chart(document.getElementById('grafPh'), {
+      type: 'line',
+      data: {
+        labels: labels, datasets: [{
+          label: 'pH', data: ph, borderColor: '#2196F3',
+          backgroundColor: '#2196F3', tension: 0.1
+        }]
+      }
+    });
+
+  }
+
+  cargar();
+  setInterval(cargar, 20000);
+
 </script>
+
 {% endblock %}
