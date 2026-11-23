@@ -1,24 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
-<h2 style="text-align:center;">Historial de Lecturas</h2>
+<div style="text-align: center;">
+  <h2 style="display: inline-block;"> Historial de Lectutras </h2>
 
-<table border="1" style="width:90%; margin:20px auto; border-collapse:collapse; text-align:center;">
+  <button onclick="location.reload()" style="background: #2E7D32; color:white; border: none;
+    padding: 6px 14px; border-radius: 5px; cursor: pointer; margin-left: 10px;"> Actualizar </button>
 
-  <tr style="background:#f0f0f0;">
+</div>
 
-    <th>ID</th>
+<table border="1" style="width: 90%; margin: 20px auto; border-collapse: collapse;
+ text-align: center;">
 
-    <th>Temperatura</th>
+  <tr style="background: #f0f0f0;">
+    <th> ID </th>
 
-    <th>Humedad</th>
+    <th> Temperatura (°C) </th>
 
-    <th>pH</th>
+    <th> Humedad (%) </th>
 
-    <th>Fecha</th>
+    <th> pH </th>
 
-    <th>Hora</th>
+    <th> Fecha </th>
 
+    <th> Hora </th>
   </tr>
+
 
   {% for r in datos %}
   <tr>
@@ -31,7 +37,7 @@
     <td>{{ r.hora }}</td>
 
   </tr>
-  
-  {% endfor %}
+
+{% endfor %}
 </table>
 {% endblock %}
