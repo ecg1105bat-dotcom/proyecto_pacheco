@@ -1,37 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="historial-head">
-    <h1 class="title">Historial de Lecturas</h1>
-    <button class="btn-actualizar" type="button">Actualizar</button>
+<div style="text-align: center;">
+  <h2 style="display: inline-block;"> Historial de Lectutras </h2>
+
+  <button onclick="location.reload()" style="background: #2E7D32; color:white; border: none;
+    padding: 6px 14px; border-radius: 5px; cursor: pointer; margin-left: 10px;"> Actualizar </button>
+
 </div>
 
-<div class="table-wrap">
+<table border="1" style="width: 90%; margin: 20px auto; border-collapse: collapse;
+ text-align: center;">
 
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Temperatura</th>
-                <th>Humedad</th>
-                <th>pH</th>
-                <th>Fecha</th>
-                <th>Hora</th>
-            </tr>
-        </thead>
+  <tr style="background: #f0f0f0;">
+    <th> ID </th>
+
+    <th> Temperatura (°C) </th>
+
+    <th> Humedad (%) </th>
+
+    <th> pH </th>
+
+    <th> Fecha </th>
+
+    <th> Hora </th>
+  </tr>
 
 
-        <tbody>
-            {% for r in registros %}
-            <tr>
-                <td>{{ r.id }}</td>
-                <td>{{ r.temp }}</td>
-                <td>{{ r.hum }}</td>
-                <td>{{ r.ph }}</td>
-                <td>{{ r.fecha }}</td>
-                <td>{{ r.hora }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+  {% for r in datos %}
+  <tr>
+
+    <td>{{ r.id }}</td>
+    <td>{{ r.temperatura }}</td>
+    <td>{{ r.humedad }}</td>
+    <td>{{ r.ph }}</td>
+    <td>{{ r.fecha }}</td>
+    <td>{{ r.hora }}</td>
+
+  </tr>
+
+{% endfor %}
+</table>
 {% endblock %}

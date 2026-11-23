@@ -1,23 +1,51 @@
 {% extends "base.html" %}
 {% block content %}
-<h1 class="title">Mediciones</h1>
-<div class="cards">
+<h2>Mediciones</h2>
+<div style="display:flex; gap:20px; justify-content:center; margin-top:20px;">
    
-   <div class="card">
-      <p>
-         Temperatura
-      </p>
-      <h2>{{ dato.temperatura }} C</h2>
+  <div style="border:1px solid #ddd; padding:20px; border-radius:10px; width:150px; text-align:center;">
 
-   </div>
-   <div class="card">
-      <p>Humedad</p>
-      <h2>{{ dato.humedad }} %</h2>
-   </div>
+    <p> Temperatura </p>
+    <h2 id="temp">{{ dato.temperatura }} °C</h2>
 
-   <div class="card">
-      <p>pH</p>
-      <h2>{{ dato.ph }}</h2>
-   </div>
+
+  </div>
+
+
+  <div style="border:1px solid #ddd; padding:20px; border-radius:10px; width:150px; text-align:center;">
+
+    <p> Humedad </p>
+    <h2 id="hum">{{ dato.humedad }} %</h2>
+
+
+  </div>
+
+
+  <div style="border:1px solid #ddd; padding:20px; border-radius:10px; width:150px; text-align:center;">
+
+    <p> pH </p>
+    <h2 id="ph">{{ dato.ph }}</h2>
+
+
+  </div>
+
+
 </div>
+
+<script>
+
+   //esta parte los actualiza cada 20 segundos 
+  setInterval(() => {
+    fetch('/valoresSensores')
+
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById('temp').innerText = data.temperatura + ' °C';
+        document.getElementById('hum').innerText = data.humedad + ' %';
+        document.getElementById('ph').innerText = data.ph;
+      });
+
+  }, 20000);
+
+</script>
 {% endblock %}
