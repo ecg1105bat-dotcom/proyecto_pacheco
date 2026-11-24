@@ -51,9 +51,6 @@ class MedicionService:
         conn.close()
         return datos
 
-
-
-
 #class MedicionService:
  #   @staticmethod
   #  def obtener_ultima():
