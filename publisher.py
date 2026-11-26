@@ -10,4 +10,4 @@ while True:
 
     MedicionService.guardar_lectura(temp, hum, ph)
     print(f"Guardado: {temp}°C, {hum}%, pH{ph}")
-    time.sleep(20)
+    time.sleep(10)
